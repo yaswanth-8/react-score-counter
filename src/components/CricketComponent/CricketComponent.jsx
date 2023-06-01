@@ -5,10 +5,14 @@ function CricketComponent() {
     runs: 0,
     wickets: 0,
     extras: 0,
+    wides: 0,
+    fours: 0,
+    sixes: 0,
+    noballs: 0,
     balls: 0,
   });
 
-  const { runs, wickets, extras } = score;
+  const { runs, wickets, extras, wides, fours, sixes, noballs } = score;
   const balls = Math.floor(score.balls % 6);
   const overs = Math.floor(score.balls / 6);
 
@@ -82,6 +86,7 @@ function CricketComponent() {
                 return {
                   ...score,
                   runs: score.runs + 4,
+                  fours: score.fours + 1,
                   balls: score.balls + 1,
                 };
               });
@@ -108,6 +113,7 @@ function CricketComponent() {
                 return {
                   ...score,
                   runs: score.runs + 6,
+                  sixes: score.sixes + 1,
                   balls: score.balls + 1,
                 };
               });
@@ -122,6 +128,7 @@ function CricketComponent() {
                   ...score,
                   runs: score.runs + 1,
                   extras: score.extras + 1,
+                  wides: score.wides + 1,
                 };
               });
             }}
@@ -135,6 +142,7 @@ function CricketComponent() {
                   ...score,
                   runs: score.runs + 1,
                   extras: score.extras + 1,
+                  noballs: score.noballs + 1,
                 };
               });
             }}
@@ -155,7 +163,9 @@ function CricketComponent() {
             W
           </button>
         </div>
-        <div className="displayExtras">Extras - {extras}</div>
+        <div className="displayExtras">
+          (Extras - {extras}, wd - {wides}, nb - {noballs})
+        </div>
       </div>
     </Fragment>
   );
